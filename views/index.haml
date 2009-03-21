@@ -1,0 +1,9 @@
+%h1 Enter text to be buttonated
+%form{:action => "/create", :method => "post", 'accept-charset' => "utf-8"}
+  %p
+    %input#text{:type => "text", :name => "text"}/
+    %input{:type => "submit", :value => "Buttonate!"}/
+
+%h2 Most recent button
+%p
+  %img{:src => "button.png", :width => "200", :height => "50"}

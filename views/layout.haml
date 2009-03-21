@@ -1,0 +1,11 @@
+!!! XML
+!!!
+%html{html_attrs}
+  %head
+    %meta{'http-equiv' => "content-type", :content => "text/html;charset=UTF-8"}/
+    %script{:src => "prototype.js", :type => "text/javascript", :charset => "utf-8"}
+    %script{:type => "text/javascript", :charset => "utf-8"}
+      Event.observe(window, 'load', function() { $('text').focus(); });
+    %title Buttonator
+  %body
+    = yield
