@@ -1,7 +1,7 @@
-require 'rubygems'
-require 'sinatra'
-require 'haml'
-require 'rmagick'
+require 'vendor/rack/lib/rack'
+require 'vendor/sinatra/lib/sinatra'
+require 'vendor/haml/lib/haml'
+require 'vendor/rmagick/lib/rmagick'
 
 include Magick
 
