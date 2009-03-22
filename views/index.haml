@@ -2,6 +2,11 @@
 %form{:action => "/create", :method => "post", 'accept-charset' => "utf-8"}
   %p
     %input#text{:type => "text", :name => "text"}/
+  %p
+    Choose a font
+    %br
+    = @fonts
+  %p
     %input{:type => "submit", :value => "Buttonate!"}/
 
 %h2 Most recent button
