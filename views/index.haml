@@ -4,8 +4,20 @@
     %input#text{:type => "text", :name => "text"}/
   %p
     Choose a font
-    %br
-    = @font_selection
+    %table{:cellspacing => "0"}
+      %tr
+        %td
+          %input{:type => "radio", :name => "font", :value => "#{@first_font.filename}", :checked => "checked"}/
+          = @first_font.name
+        %td
+          %img{:src => "#{@first_font.image_name}"}
+      - for font in @fonts
+        %tr
+          %td
+            %input{:type => "radio", :name => "font", :value => "#{font.filename}"}/
+            = font.name
+          %td
+            %img{:src => "#{font.image_name}"}
   %p
     %input{:type => "submit", :value => "Buttonate!"}/
 

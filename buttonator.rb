@@ -47,25 +47,13 @@ module Buttonator
     end
     
     def sample_image
-      Buttonator::Button.make("hamburgefontsiv",
-                              :outfile => File.join(PUBLIC, image_name),
-                              :width => 150, :height => 20,
-                              :font => self, :pointsize => 14,
-                              :gravity => Magick::SouthWestGravity)
-    end
-    
-    def radio_button(selected = false)
-      if selected
-        checked = "checked='checked' "
-      else
-        checked = ''
+      unless File.exist?(File.join(PUBLIC, image_name))
+        Buttonator::Button.make("hamburgefontsiv",
+                                :outfile => File.join(PUBLIC, image_name),
+                                :width => 150, :height => 20,
+                                :font => self, :pointsize => 14,
+                                :gravity => Magick::SouthWestGravity)
       end
-      image = File.join(PUBLIC, image_name)
-      sample_image
-      radio = "<input type='radio' name='font' value='#{@filename}' #{checked}/>"
-      radio += name + "&nbsp;"
-      radio += "<img src='#{image_name}' width='150' height='20' />"
-      radio += "<br />"
     end
   end
 end
@@ -79,20 +67,18 @@ helpers do
     fonts
   end
   
-  def font_selection(fonts)
-    first_font = fonts.shift
-    font_inputs = first_font.radio_button(true)
+  def make_sample_images(fonts)
     fonts.each do |font|
-      font_inputs += font.radio_button
+      font.sample_image
     end
-    font_inputs
   end
 end
 
 
 get "/" do
   @fonts = get_fonts
-  @font_selection = font_selection(@fonts)
+  make_sample_images(@fonts)
+  @first_font = @fonts.shift
   haml :index
 end
 
